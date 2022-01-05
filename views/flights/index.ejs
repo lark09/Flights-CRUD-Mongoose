@@ -1,0 +1,38 @@
+    <!DOCTYPE html>
+<html>
+  <head>
+    <title> Title</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <nav class="nav-bar">
+        <a href="/">Home</a>
+        <a href="/flights/new">Add New Flight</a>
+    </nav>
+    <div class="all-flights-table">
+    <h1>All Mongoose Flights</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Airline</th>
+                <th>Airport</th>
+                <th>Flight No.</th>
+                <th>Departure Date</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        <% flights.forEach(function(f) { %> 
+        <tr>
+            <td><%= f.airline %></td>
+            <td><%= f.airport %></td>
+            <td><%= f.flightNo %></td>
+            <td><%= f.departs %></td>
+            <td><a href="/flights/<%= f._id %>">Details</a></td>
+        </tr>
+        <%}); %>
+        </tbody>
+        </table>
+        </div>
+  </body>
+</html>
