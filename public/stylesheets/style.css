@@ -1,13 +1,21 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: white;
 }
 
 
 a {
-  color: red;
+  color: #001d3d;
+  background-color: #ffc300;
+  border-radius: 10px;
+  padding: auto;
+  margin:auto;
 }
 
 table {
   display: inline;
+  margin: auto;
+  padding: auto;
+  background-color: #e5e5e5;
 }

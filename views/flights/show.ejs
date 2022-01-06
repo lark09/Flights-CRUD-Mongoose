@@ -1,88 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/stylesheets/style.css" />
-    <title>Mongoose Flights</title>
-  </head>
-  <body>
-    <div class="nav-bar">
-      <a href="/">Home</a>
-      <a href="/flights">All Flights</a>
-      <a href="/flights/new">Add New Flight</a>
-      <a href="/flights/<%=flight._id%>/tickets/new">New Ticket</a>
-    </div>
 
-    <section id="show">
-        <table>
-            <thead>
-                <tr>
-                    <th>Airline:</th>
-                    <th>Airport:</th>
-                    <th>Flight Number:</th>
-                    <th>Departs:</th>
-    
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><%=flight.airline%></td>
-                    <td><%=flight.airport%></td>
-                    <td><%=flight.flightNo%></td>
-                    <td><%=flight.departs%></td>
-                
-                </tr>
-            </tbody>
-        </table>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+  <title>Mongoose Flights</title>
+</head>
+
+<body>
+  <div class="nav-bar">
+    <a href="/">Home</a>
+    <a href="/flights">All Flights</a>
+    <a href="/flights/new">Add New Flight</a>
+    <a href="/flights/<%=flight._id%>/tickets/new">New Ticket</a>
+  </div>
+
+  <section id="show">
+    <table>
+      <thead>
+        <tr>
+          <th>Airline:</th>
+          <th>Airport:</th>
+          <th>Flight Number:</th>
+          <th>Departs:</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <%=flight.airline%>
+          </td>
+          <td>
+            <%=flight.airport%>
+          </td>
+          <td>
+            <%=flight.flightNo%>
+          </td>
+          <td>
+            <%=flight.departs%>
+          </td>
+
+        </tr>
+      </tbody>
+    </table>
     </br>
 
 
-    <div>Tickets:</div>   
-    <!-- /flights/t._id/tickets -->
-  </br>
+    <div>Tickets:</div>
+    </br>
     <% if (tickets.length) { %>
-    <%tickets.forEach(function (t){%>
-  <div class="ticket-info">Seat:<%=t.seat%></div>
-  <div class="ticket-info">Price:$<%=t.price%></div>
-    <%})%>
-  <% } else { %>
-  <div >No tickets yet</div>
-  <%}%>
-    
-</br>
-    <div>Destinations:</div>
-  </br>
-  <% if (flight.destinations.length) { %>
-    <%flight.destinations.forEach(function(f){ %>
-      <div>Airport: <%=f.airport%></div>
-      <div>Arrival: <%=f.arrival%></div>
-  <% }); %>
-  <% } else { %>
-      <div> No destinations yet</div>
-      <%} %>
-  </br>
+      <%tickets.forEach(function (t){%>
+        <div class="ticket-info">Seat:<%=t.seat%>
+        </div>
+        <div class="ticket-info">Price:$<%=t.price%>
+        </div>
+        <%})%>
+          <% } else { %>
+            <div>No tickets yet</div>
+            <%}%>
+
+              </br>
+              <div>Destinations:</div>
+              </br>
+              <% if (flight.destinations.length) { %>
+                <%flight.destinations.forEach(function(f){ %>
+                  <div>Airport: <%=f.airport%>
+                  </div>
+                  <div>Arrival: <%=f.arrival%>
+                  </div>
+                  <% }); %>
+                    <% } else { %>
+                      <div> No destinations yet</div>
+                      <%} %>
+                        </br>
   </section>
   </br>
-      <h2>Add Destination</h2>
-      <form id="add-destination-form" method="POST" action="/flights/<%=flight._id%>/destinations">
-        <label
-        >Destination Airport:</br><select name="airport">
-          <option value="AUS">AUS</option>
-          <option value="DFW">DFW</option>
-          <option value="DEN">DEN</option>
-          <option value="LAX">LAX</option>
-          <option value="SAN">SAN</option>
-        </select> </label>
-        <label>Arrival:
-            <input
-          value="<%= departureDate.slice(0, 16) %>"
-          type="datetime-local"
-          name="arrival" />
-        </label>
-        <input type="submit" value="Add Destination" />
-    </form>
-    
-  </body>
+  <h2>Add Destination</h2>
+  <form id="add-destination-form" method="POST" action="/flights/<%=flight._id%>/destinations">
+    <label>Destination Airport:</br><select name="airport">
+        <option value="AUS">AUS</option>
+        <option value="DFW">DFW</option>
+        <option value="DEN">DEN</option>
+        <option value="LAX">LAX</option>
+        <option value="SAN">SAN</option>
+      </select> </label>
+    <label>Arrival:
+      <input value="<%= departureDate.slice(0, 16) %>" type="datetime-local" name="arrival" />
+    </label>
+    <input type="submit" value="Add Destination" />
+  </form>
+
+</body>
+
 </html>
