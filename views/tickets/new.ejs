@@ -11,8 +11,18 @@
     <nav>
         <a href='/flights'>All Flights</a> | 
         <a href='/flights/new'>Add Flight</a>
+        <a href="/flights/<%=flight._id%>/tickets/new">New Ticket</a>
+        
     </nav>
     <h2>Add Ticket</h2>
-    
+    <form action="/flights/<%=flightId%>/tickets" method="POST">
+      <label>Seat:
+          <input name="seat" required pattern="[A-F][1-9]\d?">
+      </label><br><br>
+      <label>Price:
+          <input type='text' name='price'>
+      </label><br><br>
+      <input type="submit" value="Add Ticket">
+
   </body>
 </html>
