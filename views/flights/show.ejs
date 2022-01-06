@@ -36,20 +36,19 @@
             </tbody>
         </table>
     </br>
-        <div>Destinations:</div>
-    </br>
-        <% if (flight.destinations.length) { %>
-            <%flight.destinations.forEach(function(f){ %>
-              <div>Airport: <%=f.airport%></div>
-              <div>Arrival: <%=f.arrival%></div>
-          <% }); %>
-          <% } else { %>
-              <div> No destinations yet</div>
-              <%} %>
-
-    </br>
-    </section>
-    </br>
+    <div>Destinations:</div>
+  </br>
+  <% if (flight.destinations.length) { %>
+    <%flight.destinations.forEach(function(f){ %>
+      <div>Airport: <%=f.airport%></div>
+      <div>Arrival: <%=f.arrival%></div>
+  <% }); %>
+  <% } else { %>
+      <div> No destinations yet</div>
+      <%} %>
+  </br>
+  </section>
+  </br>
       <h2>Add Destination</h2>
       <form id="add-destination-form" method="POST" action="/flights/<%=flight._id%>/destinations">
         <label
@@ -62,7 +61,7 @@
         </select> </label>
         <label>Arrival:
             <input
-          value="<%= localDate.slice(0, 16) %>"
+          value="<%= departureDate.slice(0, 16) %>"
           type="datetime-local"
           name="arrival" />
         </label>

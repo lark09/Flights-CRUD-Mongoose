@@ -1,9 +1,10 @@
 const Flight = require('../models/flight'); 
+const Ticket = require('../models/flight'); 
 
 module.exports = {
 	index,
 	new: newFlight,
-    create,
+  create,
 	show
 }
 function index(req, res) {
@@ -20,8 +21,13 @@ function index(req, res) {
     //   obtain the default date
     const dt = newFlight.departs;
     // format the date for the value attribute of the input
-    const departureDate = dt.toISOString().slice(0,16);
-      res.render("flights/new", {departureDate, title: "Add New Flight"});
+    // timezone offset of default date
+    let timezoneOffset =dt.getTimezoneOffset() * 60000;
+    // subtract offset from the default date
+    const departureDate = new Date(dt - timezoneOffset).toISOString();
+    // render local departure date
+      res.render("flights/new", {departureDate});
+      console.log(departureDate)
 
   }
 
@@ -33,8 +39,23 @@ function index(req, res) {
 
   function show(req, res){
     // console.log(req.params, " < -req.params in the show route")
-    Flight.findById(req.params.id, function(err, flightDocument){
-        res.render("flights/show", {flight, title: "flight details"});
-    })
-
+    const newFlight = new Flight();
+    //   obtain the default date
+    const dt = newFlight.departs;
+    // format the date for the value attribute of the input
+    // timezone offset of default date
+    let timezoneOffset =dt.getTimezoneOffset() * 60000;
+    // subtract offset from the default date
+    const departureDate = new Date(dt - timezoneOffset).toISOString();
+    // render local departure date
+    Flight.findById(req.params.id, function(err, flight) {
+      Ticket.find({ flight: flight._id }, function(err, tickets) {
+        res.render('flights/show', {
+          flight,
+          tickets,
+          departureDate,
+          title: "flight details"
+        });
+      });
+    });
   }
