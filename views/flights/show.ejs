@@ -37,6 +37,21 @@
             </tbody>
         </table>
     </br>
+
+
+    <div>Tickets:</div>   
+    <!-- /flights/t._id/tickets -->
+  </br>
+    <% if (tickets.length) { %>
+    <%tickets.forEach(function (t){%>
+  <div class="ticket-info">Seat:<%=t.seat%></div>
+  <div class="ticket-info">Price:$<%=t.price%></div>
+    <%})%>
+  <% } else { %>
+  <div >No tickets yet</div>
+  <%}%>
+    
+</br>
     <div>Destinations:</div>
   </br>
   <% if (flight.destinations.length) { %>
